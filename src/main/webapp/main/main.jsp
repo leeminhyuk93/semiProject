@@ -29,9 +29,6 @@
 				
 				var elapsed = now - createTime;
 				console.log("현재 시간 - 세션 마지막 접근 시간: " + elapsed);
-				if(member != 'null') { // 세션 체크를 하다가 로그아웃이 눌린 상황
-					clearInterval(timer);
-				}
 				
 				if(elapsed > maxInactiveInterval) {
 					alert("세션이 만료되었습니다. 다시 로그인해주세요.");

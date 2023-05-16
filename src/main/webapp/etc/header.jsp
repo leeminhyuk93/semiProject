@@ -11,7 +11,7 @@
 	
 	if(member == null) {
 		loginUrl = "<a href='" + contextPath + "/loginCheck'>로그인</a>";
-		reserveUrl = "<a href='" + contextPath + "/loginCheck'>";
+		reserveUrl = "<a href='#' onclick='loginCheck();'>";
 	} else {
 		loginUrl = "<a href='#' onclick='logoutCheck();'>로그아웃</a>";
 		reserveUrl = "<a href='../reserve/reserveMain.jsp'>";
@@ -25,6 +25,13 @@
 			window.location.href = '<%= contextPath %>/logout';
 		} else {
 			alert("취소되었습니다.");
+		}
+	}
+	
+	function loginCheck() {
+		if(sessionStorage.getItem("member") === null) {
+			alert("로그인이 필요한 기능입니다.");
+			window.location.href = '<%= contextPath %>/loginCheck';
 		}
 	}
 </script>
