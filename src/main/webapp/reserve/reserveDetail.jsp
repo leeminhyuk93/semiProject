@@ -5,6 +5,9 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!doctype html>
 <%
+	// reserveDetail에 진입했을 때 로그인 확인
+%>
+<%
 	String mainContextPath = request.getContextPath();
 %>
 <%
@@ -40,8 +43,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>예약 화면</title>
     
-    <link rel="stylesheet" type="text/css" href="../css/mainCss.css?version=1.11">
-    <link rel="stylesheet" type="text/css" href="../css/reverseDetailCss.css?1.1" >
+    <link rel="stylesheet" type="text/css" href="${contextPath}/css/mainCss.css?version=1.11">
+    <link rel="stylesheet" type="text/css" href="${contextPath}/css/reverseDetailCss.css?1.1" >
 	<link rel="shortcut icon" href="#">
 	
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

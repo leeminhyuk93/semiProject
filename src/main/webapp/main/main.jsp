@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import = "javax.servlet.http.HttpSession, java.util.Date" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <%
-	String mainContextPath = request.getContextPath();
+	String javaContextPath = request.getContextPath();
 %>
 <!DOCTYPE html>
 <html>
@@ -32,23 +34,23 @@
 			if(elapsed > maxInactiveInterval) {
 				alert("세션이 만료되었습니다. 다시 로그인해주세요.");
 				clearInterval(timer);
-				window.location.href = '<%= mainContextPath %>/logout';
+				window.location.href = '<%= javaContextPath %>/logout';
 			}
 		}, 1000);
 	}
 </script>
 	
 	
-	<link rel="stylesheet" type="text/css" href="../css/mainCss.css?version=1.7">
+	<link rel="stylesheet" type="text/css" href="${contextPath}/css/mainCss.css?version=1.7">
 </head>
 <body>
-	<%@ include file="../etc/header.jsp" %>
+	<%@ include file= "../etc/header.jsp" %>
 		
 	<div class="wrapper">
 		<div id="container">
-			<img src="../images/main/hotel1.jpg" >
-			<img src="../images/main/hotel2.jpg" >
-			<img src="../images/main/hotel3.jpg" >
+			<img src="${contextPath}/images/main/hotel1.jpg" >
+			<img src="${contextPath}/images/main/hotel2.jpg" >
+			<img src="${contextPath}/images/main/hotel3.jpg" >
 			<button id="prev">&lang;</button>
 			<button id="next">&rang;</button>
 		</div>
@@ -61,9 +63,9 @@
 	</div>	
 	<div class="main">
 		<div id="room">
-			<img src="../images/main/room1.jpg">
-	       	<img src="../images/main/room2.jpg">
-	       	<img src="../images/main/room3.jpg">
+			<img src="${contextPath}/images/main/room1.jpg">
+	       	<img src="${contextPath}/images/main/room2.jpg">
+	       	<img src="${contextPath}/images/main/room3.jpg">
 		</div>
 	</div>
 	<div class="roominfo">
@@ -75,7 +77,7 @@
 	</div>
 	
 	
-	<%@ include file="../etc/footer.jsp" %>
-	<script src="../script/main.js?version=1.0"></script>
+	<%@ include file= "../etc/footer.jsp" %>
+	<script src="${contextPath}/script/main.js?version=1.0"></script>
 </body>
 </html>

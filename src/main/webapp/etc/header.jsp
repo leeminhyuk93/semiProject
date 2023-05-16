@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import = "com.javalab.vo.*" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <%
 	MemberVo member = (MemberVo)session.getAttribute("member");
 	String loginUrl = "";
@@ -38,11 +39,12 @@
 <table width="100%" bgcolor="#F29661" class="header">
         <tr>
             <th><%= loginUrl %></th>
-            <th><a href="#">객실정보</a></th>
+            <th><a href="${contextPath}/room/Roominfo.jsp">객실정보</a></th>
             <th><%= reserveUrl %>예약</a></th>
-            <th><a href="../main/main.jsp"><img src="../images/main/logo_white.png" width="110" height="110"></a></th>
-            <th><a href="../ask/askform.jsp">고객의소리</a></th>
+            <th><a href="${contextPath}/main/main.jsp"><img src="${contextPath}/images/main/logo_white.png" width="110" height="110"></a></th>
+            <th><a href="${contextPath}/ask/askform.jsp">고객의소리</a></th>
             <th><a href="#">예약내역</a></th>
+            <th><a href="<%=request.getContextPath()%>/boardList">이용후기</a></th>
             <th><a href="#">회원가입</a></th>
         </tr>
 </table>

@@ -1,17 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%
-	String mainContextPath = request.getContextPath();
-%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
+<%
+	String javaContextPath = request.getContextPath();
+%>
 <!DOCTYPE>
 <html>
 <head>
    <meta charset="UTF-8">
    <title>Ezen Hotel 회원 로그인</title>
     
-    <link rel="stylesheet" type="text/css" href="../css/mainCss.css?version=1.7">
-    <link rel="stylesheet" type="text/css" href="../css/loginCss.css?version=1.7">
+    <link rel="stylesheet" type="text/css" href="${contextPath}/css/mainCss.css?version=1.7">
+    <link rel="stylesheet" type="text/css" href="${contextPath}/css/loginCss.css?version=1.7">
 	<link rel="shortcut icon" href="#">
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script type="text/javascript">

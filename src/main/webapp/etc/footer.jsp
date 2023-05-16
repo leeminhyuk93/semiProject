@@ -1,9 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
+
 <footer>
 	<table width="100%" height="20%" bgcolor="#F29661">
       <tr>
-          <td><img src="../images/main/logo_white.png"></td>
+          <td><img src="${contextPath}/images/main/logo_white.png"></td>
           <td>
               <table>
                   <tr>
