@@ -36,7 +36,7 @@ public class LoginServlet extends HttpServlet {
 		
 		MemberDao dao = MemberDao.getInstance();
 		MemberVo inputData = new MemberVo(id, pwd);
-		MemberVo member = dao.getMember(inputData);
+		MemberVo member = dao.ExistsMember(inputData);
 		
 		HttpSession session = request.getSession();
 		session.setAttribute("member", member); // session에 member 객체 저장

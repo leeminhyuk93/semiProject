@@ -67,3 +67,6 @@ input[id="roomName"] {
 input[id="numOfUser"] {
 	font-size: 16px;
 }
+input[id="diffDay"] {
+	font-size: 20px;
+}

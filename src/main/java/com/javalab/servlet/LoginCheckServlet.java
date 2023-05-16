@@ -56,7 +56,7 @@ public class LoginCheckServlet extends HttpServlet {
 		
 		MemberDao dao = MemberDao.getInstance();
 		MemberVo inputData = new MemberVo(id, pwd);
-		MemberVo member = dao.getMember(inputData);
+		MemberVo member = dao.ExistsMember(inputData);
 		
 		PrintWriter out = response.getWriter();
 		Gson gson = new Gson();

@@ -39,7 +39,7 @@ public class MemberDao {
 	
 	
 	// 회원 데이터에 ID와 PASSWORD가 일치하는 데이터가 있으면 데이터를 반환하는 함수
-	public MemberVo getMember(MemberVo inputData) {
+	public MemberVo ExistsMember(MemberVo inputData) {
 		MemberVo member = null;
 		StringBuffer sb = new StringBuffer();
 		
@@ -74,7 +74,40 @@ public class MemberDao {
 		
 	}
 	
-	// DB 자원해제
+	// 회원 ID로 정보를 검색(비밀번호 제외)
+		public MemberVo getMember(String user_id) {
+			MemberVo member = null;
+			StringBuffer sb = new StringBuffer();
+			
+			String username = user_id;
+			
+			
+			sb.append("SELECT * FROM TBL_MEMBER WHERE USER_ID = ?");
+			try {
+				con = dataSource.getConnection();
+				pstmt = con.prepareStatement(sb.toString());
+				pstmt.setString(1, username);
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					member = new MemberVo(
+							rs.getString("user_id"), rs.getString("name"), 
+							rs.getString("phone"), rs.getString("email")
+							);
+				}
+				
+			} catch (SQLException e) {
+				System.out.println("getMember SQLException : " + e.getMessage());
+				
+			} finally {
+				close();
+			}
+			
+			return member;
+			
+		}
+	
+		// DB 자원해제
 		private void close()
 		{
 			try {

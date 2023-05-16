@@ -23,7 +23,7 @@ public class AskDao {
 	// 기본 생성자에서 환경변수를 통한 데이터베이스 관련 DataSource얻어옴
 	// Server / contex.xml에 Resource로 세팅해놓은 정보
 	public AskDao() {
-		System.out.println("여기는 MemberDao 생성자");
+		System.out.println("여기는 AskDao 생성자");
 		try {
 			Context ctx = new InitialContext();
 			Context envContext = (Context) ctx.lookup("java:/comp/env");

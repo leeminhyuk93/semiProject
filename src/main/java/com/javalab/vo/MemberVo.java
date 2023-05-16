@@ -17,12 +17,19 @@ public class MemberVo {
 	}
 	
 	
-
 	public MemberVo(String user_id, String password) {
 		this.user_id = user_id;
 		this.password = password;
 	}
 
+	
+
+	public MemberVo(String user_id, String name, String phone, String email) {
+		this.user_id = user_id;
+		this.name = name;
+		this.phone = phone;
+		this.email = email;
+	}
 
 
 	public MemberVo() {

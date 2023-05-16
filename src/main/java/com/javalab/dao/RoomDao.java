@@ -26,7 +26,7 @@ public class RoomDao {
 			Context envContext = (Context) ctx.lookup("java:/comp/env");
 			dataSource = (DataSource) envContext.lookup("jdbc/oracle");
 		} catch (Exception e) {
-			System.out.println("MemberDao() 생성자 에러 : " + e.getMessage());
+			System.out.println("RoomDao() 생성자 에러 : " + e.getMessage());
 		}
 	}
 	
@@ -37,10 +37,10 @@ public class RoomDao {
 		return instance;
 	}
 	
-	public RoomVo getRoomInfo(String roomName) {
+	public RoomVo getRoomInfoForName(String roomName) {
 		RoomVo room = null;
 		StringBuffer sb = new StringBuffer();
-		sb.append("SELECT * FROM TBL_ROOM WHERE ROOM_ID = ?");
+		sb.append("SELECT * FROM TBL_ROOM WHERE ROOM_NAME = ?");
 		try {
 			con = dataSource.getConnection();
 			pstmt = con.prepareStatement(sb.toString());
