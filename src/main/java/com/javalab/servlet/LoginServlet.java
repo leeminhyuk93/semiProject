@@ -1,6 +1,8 @@
 package com.javalab.servlet;
 
 import java.io.IOException;
+import java.util.Date;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -37,8 +39,9 @@ public class LoginServlet extends HttpServlet {
 		MemberVo member = dao.getMember(inputData);
 		
 		HttpSession session = request.getSession();
-		session.setAttribute("member", member);
-		session.setMaxInactiveInterval(60);
+		session.setAttribute("member", member); // session에 member 객체 저장
+		session.setAttribute("createTime", new Date(session.getLastAccessedTime()).getTime()); // 세션 마지막 접근 시간 저장
+		session.setMaxInactiveInterval(30); // 세션 만료 시간을 5분으로 설정
 		
 		String contextPath = request.getContextPath();
 		response.sendRedirect(contextPath + "/main/main.jsp");

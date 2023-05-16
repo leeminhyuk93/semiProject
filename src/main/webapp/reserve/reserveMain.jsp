@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+	String mainContextPath = request.getContextPath();
+%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
@@ -11,6 +14,34 @@
     <link rel="stylesheet" type="text/css" href="../css/mainCss.css?version=1.11">
     <link rel="stylesheet" type="text/css" href="../css/reverseCss.css?version=1.4">
 	<link rel="shortcut icon" href="#">
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script type="text/javascript"> // 로그인 세션 만료 체크
+		
+		var member = '<%= session.getAttribute("member") %>';
+		// member에 값이 존재할 때만 인터벌 실행
+		if(member != 'null') {
+			var timer = setInterval(() => {
+				
+				var createTime = '<%= session.getAttribute("createTime") %>';
+				console.log("세션 접근 시간: " + createTime);
+				
+				var maxInactiveInterval = '<%= session.getMaxInactiveInterval() * 1000 %>';
+				console.log("세션 만료 시간: " + maxInactiveInterval);
+				
+				var now = new Date().getTime(); // 현재 시간을 millisecond 값으로 치환
+				console.log("현재 시간: " + now);
+				
+				var elapsed = now - createTime;
+				console.log("현재 시간 - 세션 마지막 접근 시간: " + elapsed);
+				
+				if(elapsed > maxInactiveInterval) {
+					alert("세션이 만료되었습니다. 다시 로그인해주세요.");
+					window.location.href = '<%= mainContextPath %>/loginCheck';
+					clearInterval(timer);
+				}
+			}, 1000);
+		}
+	</script>
 </head>
 <body>
 	<%@ include file = "../etc/header.jsp" %>
