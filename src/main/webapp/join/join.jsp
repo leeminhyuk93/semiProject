@@ -7,8 +7,7 @@
 <head>
    <meta charset="UTF-8">
    <title>Ezen Hotel 회원 가입 페이지</title>
-<link rel="stylesheet" type="text/css" href="../css/mainCss.css?version=1.7">
-    <link rel="stylesheet" type="text/css" href="../css/loginCss.css?version=1.7">
+	<link rel="stylesheet" type="text/css" href="../css/mainCss.css?version=1.7">
 	<link rel="shortcut icon" href="#">
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script type="text/javascript">
@@ -16,7 +15,7 @@
         $('#btn').on('click', function(e) {
            e.preventDefault();
 
-           var id = $('#userid').val();
+           var id = $('#id').val();
            var pwd = $('#password').val();
            var name = $('#name').val();
            var phone = $('#phone').val();
@@ -31,13 +30,13 @@
         	 
            if(id == "") {
         	   alert("아이디를 입력해주세요");
-        	   $('#userid').focus();
+        	   $('#id').focus();
         	   return;
            }
            
            if(!id_regex.test(id)) {
         	   alert("영어 소문자와 숫자로 5자리 이상 입력해주세요.");
-        	   $('#userid').focus();
+        	   $('#id').focus();
         	   return;
            }
            
@@ -96,7 +95,7 @@
         	   dataType : 'text',
         	   success: function(result) {
         		  const isExist = JSON.parse(result);
-        		  if(isExist) {
+        		  if(isExist == 'true') {
         			  alert("아이디가 존재합니다.");
         		  } else {
         			  alert("회원가입이 가능한 아이디입니다.");
@@ -136,7 +135,7 @@
 	<script type="text/javascript">
         $(document).ready(function() {
             
-            const input = document.getElementById('userid');
+            const input = document.getElementById('id');
         
             
             input.addEventListener('keyup', function(event) {
@@ -152,11 +151,11 @@
 					success: function(result) {
 						const isExists = JSON.parse(result);
 						if(isExists == 'false') {
-							checkText.value = "사용가능한 아이디입니다.";
+							checkText.innerHTML = "사용가능한 아이디입니다.";
 							checkText.style.color = "green";
 							return;
 						} else {
-							checkText.value = "이미 가입된 아이디입니다.";
+							checkText.innerHTML = "이미 가입된 아이디입니다.";
 							checkText.style.color = "red";
 							return;
 						}
@@ -172,60 +171,107 @@
     </script>
     
     <style>
-		#idCheck {
-			border: none; 
-			font-size: 16px; 
-			color: green;
-			background-color: transparent;
-		}
-	</style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+    }
+
+    .container {
+      width: 400px;
+      margin: 0 auto;
+      background-color: #fff;
+      border-radius: 5px;
+      padding: 20px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+      margin-left: 30px;
+    }
+
+    .form-group input[type="text"], input[type="password"], input[type="email"], input[type="tel"]{
+      width: 80%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      margin-left: 30px;
+    }
+      .form-group p {
+          margin-left: 30px;
+      }
+
+    .additional-info {
+      font-size: 5px;
+      margin-top: 5px;
+    }
+
+    .btn-container {
+      text-align: center;
+    }
+
+    .btn-container button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+  </style>
 </head>
 
 <body>
       <!--LoginServlet으로 이동-->
       <%@ include file="../etc/header.jsp" %>
-      <div id="loginComment">
-         회원 가입<br />
-         
-      </div>
       
-      <form action="${pageContext.request.contextPath}/join" method="post" name="regForm" id="regForm">
-         <table align="center" class="log">
-            <tr>
-               <th align="center" colspan="2">회원 가입</th>
-            </tr>
-            <tr id="loginTr">
-               <td id="text">아이디</td>
-               <td><input type="text" name="id" id="userid" required/></td>
-            </tr>
-            <tr>
-            	<td><input type="text" id="idCheck"></td>
-            </tr>
-            <tr>
-               <td id="text">비밀번호</td>
-               <td><input type="password" name="pwd" id="password" required/></td>
-            </tr>
-            <tr>
-               <td id="text">이름</td>
-               <td><input type="text" name="name" id="name"  required/></td>
-            </tr>
-            <tr>
-               <td id="text">전화번호</td>
-               <td><input type="tel" name="phone" id="phone"  required/></td>
-            </tr>
-            <tr>
-               <td id="text">이메일</td>
-               <td><input type="email" name="email" id="email"  required/></td>
-            </tr>
-            <tr>
-               <td colspan="2" align="center">
-                  <input type="submit" value="회원가입" id="btn" />
-               </td>
-            </tr>
-         </table>
-         
-      </form>
-      <br /><br /><br /><br /><br />
+      <div class="container">
+    <h2>회원가입</h2>
+
+    <form>
+      <div class="form-group">
+        <label for="id">아이디</label>
+        <input type="text" id="id" name="user_id">
+        <p class="additional-info" id="idCheck"></p>
+      </div>
+
+      <div class="form-group">
+        <label for="password">비밀번호</label>
+        <input type="password" id="password" name="pwd">
+      </div>
+
+      <div class="form-group">
+        <label for="name">이름</label>
+        <input type="text" id="name" name="name">
+      </div>
+
+      <div class="form-group">
+        <label for="phone">전화번호</label>
+        <input type="tel" id="phone" name="phone">
+      </div>
+
+      <div class="form-group">
+        <label for="email">이메일</label>
+        <input type="email" id="email" name="email">
+      </div>
+
+      <div class="btn-container">
+        <button type="submit" id="btn">회원가입</button>
+      </div>
+    </form>
+  </div>
      
       <%@ include file="../etc/footer.jsp" %>
 </body>
