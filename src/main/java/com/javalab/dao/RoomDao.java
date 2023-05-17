@@ -37,14 +37,14 @@ public class RoomDao {
 		return instance;
 	}
 	
-	public RoomVo getRoomInfoForName(String roomName) {
+	public RoomVo getRoomInfoForType(String roomType) {
 		RoomVo room = null;
 		StringBuffer sb = new StringBuffer();
-		sb.append("SELECT * FROM TBL_ROOM WHERE ROOM_NAME = ?");
+		sb.append("SELECT * FROM TBL_ROOM WHERE ROOM_TYPE = ?");
 		try {
 			con = dataSource.getConnection();
 			pstmt = con.prepareStatement(sb.toString());
-			pstmt.setString(1, roomName);
+			pstmt.setString(1, roomType);
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
