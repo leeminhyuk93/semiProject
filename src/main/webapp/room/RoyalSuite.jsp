@@ -192,15 +192,8 @@
 			</div>
 		</div>
 	</div>
-	<div class="button">
-	<button  type="button" onclick="location.href='${contextPath}/reserveDetail?room=room2'" style="
-														margin-top: 80px;
-														color: black;
-														background-color: white;
-														height: 58px;
-														margin-left: -101px;
-														position: absolute;
-														">객실 예약하기</button>
+	<div class= wrap id="wrap">
+		<button class="btn_alert" style="padding: 23px; " onclick="location.href='${contextPath}/reserveDetail?room=room3'">객실 예약하기</button>
 	</div>
 	</section>
 
