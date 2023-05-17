@@ -7,50 +7,59 @@
 <meta charset="UTF-8">
     <title>Insert title here</title>
     <style>
-        .completeContainer {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 50vh;
-            margin: 10%;
+        .container {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          height: 100vh;
         }
-        .completeContainer #centerd {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 60px;
+
+        .message {
+          font-size: 60px;
+          color: orange;
+          margin-bottom: 20px;
         }
-        .completeContainer label {
-            font-size: 20px;
+
+        .reservation {
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
-        .completeContainer #reserveNumber {
-            font-size: 25px;
-            margin-left: 20px;
-            margin-right: 20px;
-            
-            text-align: center;
-            height: 40px;
-            width: 200px;
+
+        label {
+          font-size: 35px;
+          color: orange;
         }
-        .completeContainer #copyButton {
-            font-size: 20px;
-            background-color: azure;
-            border: 2px solid grey;
-            width: 60px;
-            height: 45px;
+
+        input[type="text"] {
+          width: 250px;
+          height: 30px;
+          padding: 5px;
+          border: none;
+          border-radius: 5px;
+          margin-right: 20px;
+          margin-left: 20px;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+          text-align: center;
+          font-size: 20px;
         }
-        .completeContainer #copyButton:hover {
-            cursor: pointer;
-        }
-        .completeContainer table tr td {
-            display: flex;
-            align-items: center;
+
+        #copy-button {
+          width: 80px;
+          height: 45px;
+          background-color: orange;
+          color: white;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          font-size: 30px;
         }
     </style>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         function copyValue() {
-            const data = $('#reserveNumber').val();
+            const data = $('#reservation-number').val();
             
             navigator.clipboard.writeText(data)
             .then(() => {
@@ -68,21 +77,13 @@
 <body>
 	<%@ include file="../etc/header.jsp"%>
 	
-    <div class="completeContainer">
-        <div id="title">
-            <div><font size="8">예약이 완료 되었습니다.</font></div>
-            <div id="centerd">
-                <table>
-                    <tr>
-                        <td>
-                            <label for="reserveNumber">예매번호</label>
-                            <input id="reserveNumber" type="text" value="<c:out value='${requestScope.reserveNo}' />" readonly>
-                            <button id="copyButton" type="button" onclick="copyValue();">복사</button>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        </div>
+    <div class="container">
+      <div class="message">예약이 완료 되었습니다.</div>
+      <div class="reservation">
+        <label for="reservation-number">예매번호</label>
+        <input type="text" id="reservation-number" value="<c:out value='${requestScope.reserveNo}' />" readonly>
+        <button id="copy-button" type="button" onclick="copyValue();">복사</button>
+      </div>
     </div>
     
     <%@ include file="../etc/footer.jsp"%>
