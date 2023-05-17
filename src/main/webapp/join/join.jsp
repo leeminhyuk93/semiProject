@@ -173,13 +173,13 @@
     <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #f2f2f2;
+      background-color: #F6F6F6;
     }
 
     .container {
-      width: 400px;
-      margin: 0 auto;
-      background-color: #fff;
+      width: 450px;
+      margin: 5% auto;
+      background-color: white;
       border-radius: 5px;
       padding: 20px;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -188,6 +188,7 @@
     h2 {
       font-size: 24px;
       margin-bottom: 20px;
+      text-align: center;
     }
 
     .form-group {
@@ -238,40 +239,40 @@
       <%@ include file="../etc/header.jsp" %>
       
       <div class="container">
-    <h2>회원가입</h2>
-
-    <form>
-      <div class="form-group">
-        <label for="id">아이디</label>
-        <input type="text" id="id" name="user_id">
-        <p class="additional-info" id="idCheck"></p>
-      </div>
-
-      <div class="form-group">
-        <label for="password">비밀번호</label>
-        <input type="password" id="password" name="pwd">
-      </div>
-
-      <div class="form-group">
-        <label for="name">이름</label>
-        <input type="text" id="name" name="name">
-      </div>
-
-      <div class="form-group">
-        <label for="phone">전화번호</label>
-        <input type="tel" id="phone" name="phone">
-      </div>
-
-      <div class="form-group">
-        <label for="email">이메일</label>
-        <input type="email" id="email" name="email">
-      </div>
-
-      <div class="btn-container">
-        <button type="submit" id="btn">회원가입</button>
-      </div>
-    </form>
-  </div>
+	    <h2>회원가입</h2>
+	
+	    <form action="${contextPath}/join" id="regForm" method="post">
+	      <div class="form-group">
+	        <label for="id">아이디</label>
+	        <input type="text" id="id" name="id" required>
+	        <p class="additional-info" id="idCheck"></p>
+	      </div>
+	
+	      <div class="form-group">
+	        <label for="password">비밀번호</label>
+	        <input type="password" id="password" name="pwd" required>
+	      </div>
+	
+	      <div class="form-group">
+	        <label for="name">이름</label>
+	        <input type="text" id="name" name="name" required>
+	      </div>
+	
+	      <div class="form-group">
+	        <label for="phone">전화번호</label>
+	        <input type="tel" id="phone" name="phone" required>
+	      </div>
+	
+	      <div class="form-group">
+	        <label for="email">이메일</label>
+	        <input type="email" id="email" name="email" required>
+	      </div>
+	
+	      <div class="btn-container">
+	        <button type="submit" id="btn">회원가입</button>
+	      </div>
+	    </form>
+	  </div>
      
       <%@ include file="../etc/footer.jsp" %>
 </body>

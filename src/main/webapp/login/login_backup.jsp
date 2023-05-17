@@ -11,6 +11,7 @@
    <title>Ezen Hotel 회원 로그인</title>
     
     <link rel="stylesheet" type="text/css" href="${contextPath}/css/mainCss.css?version=1.7">
+    <link rel="stylesheet" type="text/css" href="${contextPath}/css/loginCss.css?version=1.7">
 	<link rel="shortcut icon" href="#">
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script type="text/javascript">
@@ -75,7 +76,7 @@
 										
 									} else {
 										alert("로그인 되었습니다.");
-										$('#loginForm').submit();
+										$('#regForm').submit();
 									}
 								},
 								error: function(request, status, error) {
@@ -94,93 +95,38 @@
 			})
 		});
 	</script>
-	<style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #F6F6F6;
-    }
-
-    .container {
-      width: 450px;
-      margin: 5% auto;
-      background-color: white;
-      border-radius: 5px;
-      padding: 20px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    }
-
-    h2 {
-      font-size: 24px;
-      margin-bottom: 20px;
-      text-align: center;
-    }
-
-    .form-group {
-      margin-bottom: 15px;
-    }
-
-    .form-group label {
-      display: block;
-      font-weight: bold;
-      margin-bottom: 5px;
-      margin-left: 30px;
-    }
-
-    .form-group input[type="text"], input[type="password"], input[type="email"], input[type="tel"]{
-      width: 80%;
-      padding: 8px;
-      border: 1px solid #ccc;
-      border-radius: 3px;
-      margin-left: 30px;
-    }
-      .form-group p {
-          margin-left: 30px;
-      }
-
-    .additional-info {
-      font-size: 5px;
-      margin-top: 5px;
-    }
-
-    .btn-container {
-      text-align: center;
-    }
-
-    .btn-container button {
-      padding: 10px 20px;
-      background-color: #4CAF50;
-      color: #fff;
-      border: none;
-      border-radius: 3px;
-      cursor: pointer;
-      font-size: 16px;
-    }
-  </style>
 </head>
 
 <body>
 	<%@ include file="../etc/header.jsp" %>
+      <!--LoginServlet으로 이동-->
+      <div id="loginComment">
+         회원 로그인 화면입니다<br />
          
-      <div class="container">
-	    <h2>로그인</h2>
-	
-	    <form action="${contextPath}/login" id="loginForm" method="post">
-	      <div class="form-group">
-	        <label for="id">아이디</label>
-	        <input type="text" id="username" name="username" required>
-	        <p class="additional-info" id="idCheck"></p>
-	      </div>
-	
-	      <div class="form-group">
-	        <label for="password">비밀번호</label>
-	        <input type="password" id="password" name="password" required>
-	      </div>
-	
-	      <div class="btn-container">
-	        <button type="submit" id="loginBtn">로그인</button>
-	      </div>
-	    </form>
-	  </div>
+      </div>
+      
+      <form id="regForm" action="${contextPath}/login" method="post">
+         <table align="center" class="log">
+            <tr>
+               <th align="center" colspan="2">LOGIN</th>
+            </tr>
+            <tr id="loginTr">
+               <td id="text">아이디</td>
+               <td><input type="text" name="username" id="username" /></td>
+            </tr>
+            <tr>
+               <td id="text">비밀번호</td>
+               <td><input type="password" name="password" id="password" /></td>
+            </tr>
+            <tr>
+               <td colspan="2" align="center">
+                  <input type="submit" value="로그인" id="loginBtn" />
+               </td>
+            </tr>
+         </table>
+         
+      </form>
+      <br /><br /><br /><br /><br />
 
       <%@ include file="../etc/footer.jsp" %>
 </body>

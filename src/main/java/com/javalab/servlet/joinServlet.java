@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+
 import com.javalab.dao.MemberDao;
 import com.javalab.vo.MemberVo;
 
@@ -63,31 +64,17 @@ public class joinServlet extends HttpServlet {
 		
 		System.out.println("user_id : " + user_id);
 		
-		PrintWriter out = response.getWriter();
-		if (user_id.equals("") || password.equals("") || name.equals("") || phone.equals("") || email.equals("")) {
-			out.println("<script>");
-			out.println("alert('빈칸을 채워 주세요.')");
-			out.println("history.back()");
-			out.println("</script>");
-		} else {
-			MemberVo member = new MemberVo(user_id, password, name, phone, email);
-			MemberDao memberDao = MemberDao.getInstance();
-			int result = memberDao.join(member);
-			if (result == 0) {
-				out.println("<script>");
-				out.println("alert('이미 존재하는 아이디입니다.')");
-				out.println("history.back()");
-				out.println("</script>");
-			} else {
-				out.println("<script>");
-				out.println("alert('회원가입이 완료되었습니다')");
-				out.println("</script>");
-				
-				HttpSession session = request.getSession();
-			    session.setAttribute("user_id", user_id);
-				
-				response.sendRedirect(contextPath + "/main/main.jsp");
-			}
+		MemberVo member = new MemberVo(user_id, password, name, phone, email);
+		MemberDao memberDao = MemberDao.getInstance();
+		int result = memberDao.join(member);
+		
+		if (result != 0) {
+			System.out.println("회원가입 정보 데이터베이스 등록 성공");
+			HttpSession session = request.getSession();
+		    session.setAttribute("user_id", user_id);
+			
+			response.sendRedirect(contextPath + "/main/main.jsp");
 		}
+
 	}
 }
