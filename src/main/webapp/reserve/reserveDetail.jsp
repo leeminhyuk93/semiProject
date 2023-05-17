@@ -134,24 +134,24 @@
     	
     	// 인원 추가
     	function addPerson() {
-    		var num = $('#numOfUser').val();
+    		var num = $('#numOfuser').val();
     		num++;
     		if(num >= 4) {
     			num = 4;
     		}
     		
-    		$('#numOfUser').val(num);
+    		$('#numOfuser').val(num);
     	}
     	
     	// 인원 감소
     	function minusPerson() {
-    		var num = $('#numOfUser').val();
+    		var num = $('#numOfuser').val();
     		num--;
     		if(num <= 1) {
     			num = 1;
     		}
     		
-    		$('#numOfUser').val(num);
+    		$('#numOfuser').val(num);
     	}
     	
     	function reserveConfirm() {
@@ -229,7 +229,7 @@
 	                              <td><input id="checkin" name="checkin" type="date" min="YYYY-MM-DD"></td>
 	                              <td></td>
 	                              <td><input id="checkout" name="checkout" type="date"></td>
-	                              <td><input id="numOfUser" name="numOfUser" type="number" value="1" readonly></td>
+	                              <td><input id="numOfuser" name="numOfuser" type="number" value="1" readonly></td>
 	                              <td>
 	                                  <button type="button" onclick="minusPerson();">-</button>
 	                                  <button type="button" onclick="addPerson();">+</button>

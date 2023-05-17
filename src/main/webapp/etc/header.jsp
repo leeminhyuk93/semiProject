@@ -43,8 +43,8 @@
             <th><%= reserveUrl %>예약</a></th>
             <th><a href="${contextPath}/main/main.jsp"><img src="${contextPath}/images/main/logo_white.png" width="110" height="110"></a></th>
             <th><a href="${contextPath}/ask/askform.jsp">고객의소리</a></th>
-            <th><a href="#">예약내역</a></th>
+            <th><a href="${contextPath}/reserve/reserveCheckForm.jsp">예약내역</a></th>
             <th><a href="<%=request.getContextPath()%>/boardList">이용후기</a></th>
-            <th><a href="#">회원가입</a></th>
+            <th><a href="${contextPath}/join/join.jsp">회원가입</a></th>
         </tr>
 </table>

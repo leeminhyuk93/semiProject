@@ -12,6 +12,7 @@ public class AskVo {
 	
 	public AskVo() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
 	
 	public AskVo(int ask_no, String ask_name, String ask_title, String ask_content, String ask_phone, String ask_email,

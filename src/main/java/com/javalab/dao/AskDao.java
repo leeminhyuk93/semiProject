@@ -3,7 +3,6 @@ package com.javalab.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -32,7 +31,6 @@ public class AskDao {
 			e.printStackTrace();
 		}
 	}
-
 	
 	// 싱글톤 팬턴으로 생성
 	public static AskDao getInstance() {
@@ -43,24 +41,36 @@ public class AskDao {
 
 	// 회원 저장 메소드
 	public void addAsk(AskVo ask) {
-		StringBuffer sb = new StringBuffer();
 		try {
-			con = dataSource.getConnection();
-			sb.append("INSERT INTO ASK(ASK_NO, ASK_NAME, ASK_TITLE, ASK_CONTENT, ASK_PHONE, ASK_EMAIL, ASK_DATE) ");
-			sb.append("VALUES(ASK_NO_SEQ.NEXTVAL, ?, ?, ?, ?, ?, ?)");
-			pstmt = con.prepareStatement(sb.toString());
-			pstmt.setString(1, ask.getAsk_name());
-			pstmt.setString(2, ask.getAsk_title());
-			pstmt.setString(3, ask.getAsk_content());
-			pstmt.setString(4, ask.getAsk_phone());
-			pstmt.setString(5, ask.getAsk_email());
-			pstmt.setString(6, ask.getAsk_date());
-			pstmt.executeQuery();
 			
-		} catch (SQLException e) {
-			System.out.println("addAsk SQLException: " + e.getMessage());
-		} finally {
-			close();
+			Connection con = dataSource.getConnection();
+			
+//			int ask_no = ask.getAsk_no();
+			String ask_name = ask.getAsk_name();
+			String ask_title = ask.getAsk_title();
+			String ask_content = ask.getAsk_content();
+			String ask_phone = ask.getAsk_phone();
+			String ask_email = ask.getAsk_email();
+			String ask_date = ask.getAsk_date();
+			
+			String query = "insert into TBL_ASK";			
+			query += " (ask_no, ask_name, ask_title, ask_content, ask_phone, ask_email, ask_date)";
+			query += " values(ask_no_seq.nextval,?,?,?,?,?,?)";
+			
+			System.out.println("SQL :  " + query);
+			
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, ask_name);
+			pstmt.setString(2, ask_title);
+			pstmt.setString(3, ask_content);
+			pstmt.setString(4, ask_phone);
+			pstmt.setString(5, ask_email);
+			pstmt.setString(6, ask_date);
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close();			
 		}
 	}
 
@@ -74,9 +84,6 @@ public class AskDao {
 			}
 			if ( con != null ){ 
 				con.close(); 
-			}
-			if( rs != null ) {
-				rs.close();
 			}
 		} catch (Exception e) {
 			throw new RuntimeException(e.getMessage());

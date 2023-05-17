@@ -11,7 +11,13 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         function reservationConfirmed() {
-            alert("예약 완료 버튼이 눌렸습니다.");
+        	if(confirm("예약을 확정하시겠습니까?")) {
+        		alert("예약이 완료되었습니다.");
+                $('#completeForm').submit();
+        	} else {
+        		alert("내용을 확인 후 확정을 눌러주세요.");
+        	}
+            
         }
     </script>
     <script type="text/javascript"> // 로그인 세션 만료 체크
@@ -53,6 +59,7 @@
   	      </div>
   	      <hr style="width: 900px;">
   	      <div>
+  	      <form id="completeForm" action="${contextPath}/reserveComplete" method="post">
   	          <table id="table">
                   <tr>
                       <td id="td1"><label>호텔이름</label></td>
@@ -79,8 +86,16 @@
                       <td id="td2"><label><c:out value="${requestScope.reserveInfo.numOfuser}명"/></label></td>
                   </tr>
   	          </table>
+  	          <input name="hotelName" type="hidden" value="${requestScope.reserveInfo.hotelName}">
+              <input name="roomName" type="hidden" value="${requestScope.reserveInfo.roomName}">
+              <input name="checkin" type="hidden" value="${requestScope.reserveInfo.checkin}">
+              <input name="checkout" type="hidden" value="${requestScope.reserveInfo.checkout}">
+              <input name="diffDay" type="hidden" value="${requestScope.reserveInfo.diffDay}">
+              <input name="numOfuser" type="hidden" value="${requestScope.reserveInfo.numOfuser}">
+              <input name="user_id" type="hidden" value="${requestScope.reserveInfo.user_id}">
+  	     </form>
   	          <div id="button">
-  	              <button onclick="reservationConfirmed();">예약확정</button>
+  	              <button type="button" onclick="reservationConfirmed();">예약확정</button>
   	          </div>
   	          <hr style="width: 900px; margin-top: 30px;">
   	      </div>
