@@ -1,6 +1,8 @@
 package com.javalab.servlet;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -43,7 +45,11 @@ public class ReserveCompleteServlet extends HttpServlet {
 		rdao.insertReserve(user_id, roomName, hotelName, checkin, checkout, numOfuser);
 		
 		String reserveNo = rdao.getLastReserveNo();
-		System.out.println("등록한 예약번호 : " + reserveNo);
+		request.setAttribute("reserveNo", reserveNo);
+		
+		String contextPath = request.getContextPath();
+		RequestDispatcher rd = request.getRequestDispatcher(contextPath + "/reserve/reserveComplete.jsp");
+		rd.forward(request, response);
 	}
 
 }

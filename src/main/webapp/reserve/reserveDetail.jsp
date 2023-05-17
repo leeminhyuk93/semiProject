@@ -15,27 +15,31 @@
 	String room_id = request.getParameter("room");
 	String img_src = "";
 	String room_name = "";
-	String room_name_korean = "";
+	String room_type = "";
+	String price = "";
 	
 	String hotel_name = "EZEN_HOTEL";
+	
+	RoomDao rdao = RoomDao.getInstance();
+	RoomVo room = rdao.getRoom(room_id);
+	
+	price = room.getRoom_price();
+	room_name = room.getRoom_name();
+	room_type = room.getRoom_type();
 	
 	switch(room_id) {
 	case "room1":
 		img_src = "../images/reserve/room1.1.jpg";
-		room_name = "DELUXE KING";
-		room_name_korean = "디럭스 킹 ";
 		break;
 	case "room2":
 		img_src = "../images/reserve/room2.1.jpg";
-		room_name = "DELUXE TWIN";
-		room_name_korean = "디럭스 트윈 ";
 		break;
 	case "room3":
 		img_src = "../images/reserve/room3.1.jpg";
-		room_name = "FAMILY SUITE";
-		room_name_korean = "패밀리 스위트 ";
 		break;
 	}
+	
+	
 %>
 <html lang="en">
   <head>
@@ -208,7 +212,7 @@
   	  	  <input name="user_id" type="hidden" value="${sessionScope.member.user_id}">
 	  	  <div class="container">
 	          <div class="reserveTitle">
-	              <div id="title"><%= room_name_korean %><span id="subtitle"><%= room_name %></span></div>
+	              <div id="title"><%= room_name %><span id="subtitle"><%= room_type %></span></div>
 	              <div id="menu">예약 화면</div>
 	              <hr>
 	              <div id="body">
@@ -225,11 +229,12 @@
 	                          </tr>
 	                          <tr>
 	                              <td><input id="hotelName" name="hotelName" type="text" value=<%= hotel_name %> readonly></td>
-	                              <td><input id="roomName" name="roomName" type="text" value="<%= room_name %>" readonly></td>
+	                              <td><input id="roomName" name="roomName" type="text" value="<%= room_type %>" readonly></td>
 	                              <td><input id="checkin" name="checkin" type="date" min="YYYY-MM-DD"></td>
 	                              <td></td>
 	                              <td><input id="checkout" name="checkout" type="date"></td>
 	                              <td><input id="numOfuser" name="numOfuser" type="number" value="1" readonly></td>
+	                              <td><input id="price" name="price" type="hidden" value=<%= price %>></td>
 	                              <td>
 	                                  <button type="button" onclick="minusPerson();">-</button>
 	                                  <button type="button" onclick="addPerson();">+</button>

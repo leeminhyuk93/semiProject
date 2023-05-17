@@ -22,8 +22,16 @@
            var phone = $('#phone').val();
            var email = $('#email').val();
            
+           const id_regex = /^[a-z0-9]+$/;
+           
            if(id == "") {
         	   alert("아이디를 입력해주세요");
+        	   $('#userid').focus();
+        	   return;
+           }
+           
+           if(!id_regex.test(id)) {
+        	   alert("아이디는 영소문자와 숫자만 입력가능합니다.");
         	   $('#userid').focus();
         	   return;
            }

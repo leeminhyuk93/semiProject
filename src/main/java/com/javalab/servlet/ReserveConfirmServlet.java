@@ -33,8 +33,9 @@ public class ReserveConfirmServlet extends HttpServlet {
 		String checkout = request.getParameter("checkout");
 		String numOfuser = request.getParameter("numOfuser");
 		String diffDay = request.getParameter("diffDay");
+		String price = request.getParameter("price");
 		
-		ReserveInfoVo reserveInfo = new ReserveInfoVo(user_id, hotelName, roomName, checkin, checkout, numOfuser, diffDay);
+		ReserveInfoVo reserveInfo = new ReserveInfoVo(user_id, hotelName, roomName, checkin, checkout, numOfuser, diffDay, price);
 		request.setAttribute("reserveInfo", reserveInfo);
 		
 

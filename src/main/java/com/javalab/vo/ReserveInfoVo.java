@@ -8,9 +8,10 @@ public class ReserveInfoVo {
 	private String checkout;
 	private String numOfuser;
 	private String diffDay;
+	private String price;
 	
 	public ReserveInfoVo(String user_id, String hotelName, String roomName, String checkin, String checkout,
-			String numOfuser, String diffDay) {
+			String numOfuser, String diffDay, String price) {
 		this.user_id = user_id;
 		this.hotelName = hotelName;
 		this.roomName = roomName;
@@ -18,6 +19,7 @@ public class ReserveInfoVo {
 		this.checkout = checkout;
 		this.numOfuser = numOfuser;
 		this.diffDay = diffDay;
+		this.price = price;
 	}
 
 	public String getUser_id() {
@@ -74,6 +76,16 @@ public class ReserveInfoVo {
 
 	public void setDiffDay(String diffDay) {
 		this.diffDay = diffDay;
+	}
+	
+	
+
+	public String getPrice() {
+		return price;
+	}
+
+	public void setPrice(String price) {
+		this.price = price;
 	}
 
 	@Override

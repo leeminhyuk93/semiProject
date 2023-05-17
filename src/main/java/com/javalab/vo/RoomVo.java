@@ -22,6 +22,8 @@ public class RoomVo {
 		this.room_capacity = room_capacity;
 		this.room_price = room_price;
 	}
+
+	
 	public String getRoom_id() {
 		return room_id;
 	}

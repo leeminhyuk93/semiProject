@@ -78,7 +78,7 @@
         <div class="roominfo">
             <img src="${contextPath}/images/reserve/room3.1.jpg">
             <div>
-            <p>패밀리 스위트 <span>FAMILY SUITE</span></p>
+            <p>로얄 스위트 <span>ROYAL SUITE</span></p>
             <p id="content">고급스러운 스위트 룸이 선사하는<br>프리미엄 라이프스타일 공간을 누리세요.</p>
                 <div class="subimages">
                     <img src="${contextPath}/images/reserve/room3.2.jpg">

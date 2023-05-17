@@ -102,20 +102,20 @@ public class ReserveDao {
 	
 	
 	// DB 자원해제
-			private void close()
-			{
-				try {
-					if ( pstmt != null ){ 
-						pstmt.close(); 
-					}
-					if ( con != null ){ 
-						con.close(); 
-					}
-					if( rs != null ) {
-						rs.close();
-					}
-				} catch (Exception e) {
-					throw new RuntimeException(e.getMessage());
-				}
-			} // end close()
+	private void close()
+	{
+		try {
+			if ( pstmt != null ){ 
+				pstmt.close(); 
+			}
+			if ( con != null ){ 
+				con.close(); 
+			}
+			if( rs != null ) {
+				rs.close();
+			}
+		} catch (Exception e) {
+			throw new RuntimeException(e.getMessage());
+		}
+	} // end close()
 }

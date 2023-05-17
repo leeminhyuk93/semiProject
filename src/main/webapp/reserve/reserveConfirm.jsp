@@ -85,6 +85,10 @@
                       <td id="td1"><label>수용인원</label></td>
                       <td id="td2"><label><c:out value="${requestScope.reserveInfo.numOfuser}명"/></label></td>
                   </tr>
+                  <tr>
+                  	  <td id="td1"><label> 결제금액 </label></td>
+                  	  <td id="td2"><label style="font-weight: bold;"><c:out value="${requestScope.reserveInfo.price}" />원</label></td>
+                  </tr>
   	          </table>
   	          <input name="hotelName" type="hidden" value="${requestScope.reserveInfo.hotelName}">
               <input name="roomName" type="hidden" value="${requestScope.reserveInfo.roomName}">
