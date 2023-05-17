@@ -74,7 +74,7 @@ public class MemberDao {
 		
 	}
 	
-	// 회원 ID로 정보를 검색(비밀번호 제외)
+	// 회원 ID로 정보를 검색(비밀번호 제외) - 아이디가 존재하는지 여부 확인
 		public MemberVo getMember(String user_id) {
 			MemberVo member = null;
 			StringBuffer sb = new StringBuffer();
@@ -108,10 +108,10 @@ public class MemberDao {
 		
 		
 		// 아이디 존재하는지 확인
-		public boolean isExistMember(String user_id) {
-			boolean result = false;
+		public String isExistMember(String user_id) {
+			String result = "false";
 			StringBuffer sb = new StringBuffer();
-			sb.append("SELECT DECODE(COUNT(*), 1, 'TRUE', 'FALSE') ISEXIST FROM TBL_MEMBER WHERE USER_ID = ?");
+			sb.append("SELECT DECODE(COUNT(*), 1, 'true', 'false') ISEXIST FROM TBL_MEMBER WHERE USER_ID = ?");
 			try {
 				con = dataSource.getConnection();
 				pstmt = con.prepareStatement(sb.toString());
@@ -119,15 +119,13 @@ public class MemberDao {
 				rs = pstmt.executeQuery();
 				
 				if(rs.next()) {
-					if(rs.getString("isexist").equals("TRUE")) {
-						result = true;
-					} else {
-						result = false;
-					}
+					result = rs.getString("isexist");
 				}
 				
 			} catch (SQLException e) {
 				System.out.println("isExistMember SQLException : " + e.getMessage());
+			} finally {
+				close();
 			}
 			
 			return result;

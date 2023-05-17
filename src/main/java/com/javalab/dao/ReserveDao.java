@@ -46,7 +46,6 @@ public class ReserveDao {
 		HotelDao hdao = HotelDao.getInstance();
 		MemberDao mdao = MemberDao.getInstance();
 		
-		System.out.println("전달되는 룸 이름 : " + roomType);
 		MemberVo member = mdao.getMember(user_id);
 		RoomVo room = rdao.getRoomInfoForType(roomType);
 		HotelVo hotel = hdao.getHotelInfoForName(hotelName);

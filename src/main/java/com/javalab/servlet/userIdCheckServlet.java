@@ -22,14 +22,14 @@ public class userIdCheckServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("doGet@@@");
+		System.out.println("doGet()");
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("application/x-json; charset=UTF-8");
 		
 		String user_id = request.getParameter("id");
 		
 		MemberDao dao = MemberDao.getInstance();
-		boolean result = dao.isExistMember(user_id);
+		String result = dao.isExistMember(user_id);
 		
 		PrintWriter out = response.getWriter();
 		Gson gson = new Gson();

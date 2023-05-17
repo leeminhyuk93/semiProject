@@ -22,8 +22,13 @@
            var phone = $('#phone').val();
            var email = $('#email').val();
            
-           const id_regex = /^[a-z0-9]+$/;
-           
+           const id_regex = /^[a-z]+[a-z0-9]{5,19}$/g;
+           const pwd_regex = /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/;
+           const name_regex = /^[가-힣]+$/;
+           const phone_regex = /^01(?:0|1|[6-9])-(?:\d{3}|\d{4})-\d{4}$/;
+           const email_regex = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+        	     
+        	 
            if(id == "") {
         	   alert("아이디를 입력해주세요");
         	   $('#userid').focus();
@@ -31,13 +36,19 @@
            }
            
            if(!id_regex.test(id)) {
-        	   alert("아이디는 영소문자와 숫자만 입력가능합니다.");
+        	   alert("영어 소문자와 숫자로 5자리 이상 입력해주세요.");
         	   $('#userid').focus();
         	   return;
            }
            
            if(pwd == "") {
         	   alert("비밀번호를 입력해주세요");
+        	   $('#password').focus();
+        	   return;
+           }
+          
+           if(!pwd_regex.test(pwd)) {
+        	   alert("소문자와 숫자 특수문자를 넣어 8자리 이상 입력해주세요.");
         	   $('#password').focus();
         	   return;
            }
@@ -48,14 +59,32 @@
         	   return;
            }
            
+           if(!name_regex.test(name)) {
+        	   alert("한글로 입력해주세요.");
+        	   $('#name').focus();
+        	   return;
+           }
+           
            if(phone == "") {
         	   alert("전화번호를 입력해주세요");
         	   $('#phone').focus();
         	   return;
            }
            
+           if(!phone_regex.test(phone)) {
+        	   alert("하이픈(-)을 포함하여 작성해주세요.\n '010-0000-0000'");
+        	   $('#phone').focus();
+        	   return;
+           }
+           
            if(email == "") {
         	   alert("이메일를 입력해주세요");
+        	   $('#email').focus();
+        	   return;
+           }
+           
+           if(!email_regex.test(email)) {
+        	   alert("이메일 형식으로 입력해주세요 \n 'ezen@naver.com'");
         	   $('#email').focus();
         	   return;
            }
@@ -79,8 +108,8 @@
           
         });
      });
-	
 	</script>
+	
 	
 	<%-- 로그인이 된 상태에서 회원가입 폼으로 이동하기 방지 --%> 
 	<%
@@ -101,6 +130,55 @@
 	<%
 		}
 	%>
+	
+	
+	<%-- 실시간 아이디 중복 검사 --%>
+	<script type="text/javascript">
+        $(document).ready(function() {
+            
+            const input = document.getElementById('userid');
+        
+            
+            input.addEventListener('keyup', function(event) {
+                const input_id = event.target.value;
+                const checkText = document.getElementById('idCheck');
+                
+             // 회원 아이디가 존재하는지 확인
+		        $.ajax({
+					url : '${contextPath}/idCheck',
+					type : 'get',
+					data : {id: input_id},
+					dataType : 'text',
+					success: function(result) {
+						const isExists = JSON.parse(result);
+						if(isExists == 'false') {
+							console.log("사용 가능한 아이디");
+							checkText.value = "사용가능한 아이디입니다.";
+							return;
+						} else {
+							checkText.value = "이미 가입된 아이디입니다.";
+							console.log("이미 가입된 아이디");
+							return;
+						}
+					},
+					error: function(request, status, error) {
+						console.log(error);
+					}
+				}); // 회원 아이디 체크 ajax
+				
+				
+            });
+        });
+    </script>
+    
+    <style>
+		#idCheck {
+			border: none; 
+			font-size: 16px; 
+			color: green;
+			background-color: transparent;
+		}
+	</style>
 </head>
 
 <body>
@@ -121,6 +199,9 @@
                <td><input type="text" name="id" id="userid" required/></td>
             </tr>
             <tr>
+            	<td><input type="text" id="idCheck"></td>
+            </tr>
+            <tr>
                <td id="text">비밀번호</td>
                <td><input type="password" name="pwd" id="password" required/></td>
             </tr>
@@ -134,7 +215,7 @@
             </tr>
             <tr>
                <td id="text">이메일</td>
-               <td><input type="text" name="email" id="email"  required/></td>
+               <td><input type="email" name="email" id="email"  required/></td>
             </tr>
             <tr>
                <td colspan="2" align="center">

@@ -7,7 +7,7 @@ body {
 
 }
   #loginComment{
-	width: 500px;
+	width: 700px;
 	margin-top:5%;
 	margin-bottom: 5%;
 	margin-left:auto;
@@ -20,16 +20,17 @@ body {
 .log{
 	background:#f1ebd5;
 	margin:auto;
-	width:430px;
+	width:530px;
 	height:360px;
 	text-align:center;
 	border-radius: 1em;
+	display: flex;
   }
   
 .log tr td {
 	height:40px;
-	font-size:larger;
-  		}
+	font-size:larger;	
+}
 
 .log th {
 	height:100px;

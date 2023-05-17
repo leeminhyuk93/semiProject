@@ -62,8 +62,12 @@
             
         }
     </script>
+    <link rel="stylesheet" type="text/css" href="${contextPath}/css/mainCss.css?version=1.7">
+    
 </head>
 <body>
+	<%@ include file="../etc/header.jsp"%>
+	
     <div class="completeContainer">
         <div id="title">
             <div><font size="8">예약이 완료 되었습니다.</font></div>
@@ -80,5 +84,7 @@
             </div>
         </div>
     </div>
+    
+    <%@ include file="../etc/footer.jsp"%>
 </body>
 </html>

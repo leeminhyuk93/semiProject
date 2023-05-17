@@ -17,33 +17,81 @@
 	<script type="text/javascript">
 		$(document).ready(function() {
 			
+			$('#username').focus();
+			
 			$('#loginBtn').on('click', function(e) {
 				e.preventDefault();
 				
 				var id = $('#username').val();
 				var pwd = $('#password').val();
 				
-				$.ajax({
-					url : '${contextPath}/loginCheck',
-					type : 'post',
-					data : {id: id, pwd: pwd},
+				const id_regex = /^[a-z0-9]{5,20}$/;
+		        
+		        if(id == "") {
+		        	alert("아이디를 입력해주세요.");
+		        	$('#username').focus();
+		        	return;
+		        }
+		        
+		        if(!id_regex.test(id)) {
+		        	alert("입력하신 아이디 형식이 맞지 않습니다.");
+		        	$('#username').focus();
+		        	return;
+		        }
+		        
+		        if(pwd == "") {
+		        	alert("비밀번호를 입력해주세요.");
+		        	$('#password').focus();
+		        	return;
+		        }
+		       
+		        // 회원 아이디가 존재하는지 확인
+		        $.ajax({
+					url : '${contextPath}/idCheck',
+					type : 'get',
+					data : {id: id},
 					dataType : 'text',
 					success: function(result) {
-						const member = JSON.parse(result);
-						if(member == null) {
-							alert("회원이 존재하지 않습니다.");
+						const isExists = JSON.parse(result);
+						console.log(isExists);
+						if(isExists == 'false') {
+							alert("가입된 회원이 존재하지 않습니다.");
 							$('#username').focus();
 							return;
 							
 						} else {
-							alert("로그인 되었습니다.");
-							$('#regForm').submit();
+							
+							// 로그인 체크 확인
+							$.ajax({
+								url : '${contextPath}/loginCheck',
+								type : 'post',
+								data : {id: id, pwd: pwd},
+								dataType : 'text',
+								success: function(result) {
+									const member = JSON.parse(result);
+									if(member == null) {
+										alert("비밀번호가 올바르지 않습니다.");
+										$('#password').focus();
+										return;
+										
+									} else {
+										alert("로그인 되었습니다.");
+										$('#regForm').submit();
+									}
+								},
+								error: function(request, status, error) {
+									alert('서버와의 통신에 실패하였습니다.');
+								}
+							}); // end 로그인 체크 ajax
+							
 						}
 					},
 					error: function(request, status, error) {
 						console.log(error);
 					}
-				});
+				}); // 회원 아이디 체크 ajax
+				
+				
 			})
 		});
 	</script>
