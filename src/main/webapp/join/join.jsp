@@ -152,12 +152,12 @@
 					success: function(result) {
 						const isExists = JSON.parse(result);
 						if(isExists == 'false') {
-							console.log("사용 가능한 아이디");
 							checkText.value = "사용가능한 아이디입니다.";
+							checkText.style.color = "green";
 							return;
 						} else {
 							checkText.value = "이미 가입된 아이디입니다.";
-							console.log("이미 가입된 아이디");
+							checkText.style.color = "red";
 							return;
 						}
 					},

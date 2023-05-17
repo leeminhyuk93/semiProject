@@ -22,7 +22,6 @@ public class userIdCheckServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("doGet()");
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("application/x-json; charset=UTF-8");
 		

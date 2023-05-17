@@ -356,6 +356,7 @@ html, body {
 	padding: 0px 478px 0px;
 	text-align: center;
 	margin-top: -20px;
+	margin-bottom: 171px;
 }
 
 .room-list-text {
@@ -460,15 +461,17 @@ html, body {
 	margin-top: -103px;
 }
 
-.button {
-	width: 84px;
-	height: 36px;
-	border: 2px solid #ffffff;
-	display: block;
-	background: #ffffff;
+.btn_alert:hover {
+	background: rgb(152 33 33);
 	color:#fff;
-	padding: -1px;
-	transition: background 0.2s, color 0.2s;
-	margin-left: 848px;
-	margin-top: -582px;
+	transition: 0.5s;
+}
+
+.wrap {
+	display: flex;
+	margin-left: 659px;
+	justify-content: center;
+	margin-top: -675px;
+	position: relative;
+	color:#fff;
 }
