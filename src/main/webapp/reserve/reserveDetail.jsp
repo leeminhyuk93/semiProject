@@ -49,6 +49,44 @@
     
     <link rel="stylesheet" type="text/css" href="${contextPath}/css/mainCss.css?version=1.11">
     <link rel="stylesheet" type="text/css" href="${contextPath}/css/reverseDetailCss.css?1.1" >
+    <style>
+	  .button {
+	    display: inline-block;
+	    margin-top: 20px;
+	    padding: 10px 20px;
+	    background-color: #FFA500;
+	    color: white;
+	    text-decoration: none;
+	    border-radius: 5px;
+	    border: none;
+	    font-size: 16px;
+	    cursor: pointer;
+	    transition: background-color 0.3s ease;
+	  }
+	
+	  .button:hover {
+	    background-color: #FF7F00;
+	  }
+	  
+	  .orangeButton {
+	    display: inline-block;
+	    width: 50px;
+	    height: 50px;
+	    line-height: 30px;
+	    text-align: center;
+	    background-color: #FFA500;
+	    color: white;
+	    border-radius: 30%;
+	    border: none;
+	    font-size: 16px;
+	    cursor: pointer;
+	    transition: background-color 0.3s ease;
+	  }
+	
+	.orangeButton :hover {
+	    background-color: #FF7F00;
+	  }
+	</style>
 	<link rel="shortcut icon" href="#">
 	
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -197,7 +235,7 @@
 	                              <td><label for="hotelName">호텔이름</label></td>
 	                              <td><label for="roomName">객실종류</label></td>
 	                              <td><label for="checkin">체크인</label></td>
-	                              <td><input type="text" id="diffDay" name="diffDay" readonly style="color: green; border:none"></td>
+	                              <td><input type="text" id="diffDay" name="diffDay" readonly style="color: #FFA500; border:none"></td>
 	                              <td><label for="checkout">체크아웃</label></td>
 	                              <td><label for="numOfuser">인원</label></td>
 	                          </tr>
@@ -210,14 +248,14 @@
 	                              <td><input id="numOfuser" name="numOfuser" type="number" value="1" readonly></td>
 	                              <td><input id="price" name="price" type="hidden" value=<%= price %>></td>
 	                              <td>
-	                                  <button type="button" onclick="minusPerson();">-</button>
-	                                  <button type="button" onclick="addPerson();">+</button>
+	                                  <button class="orangeButton" type="button" onclick="minusPerson();">-</button>
+	                                  <button class="orangeButton" type="button" onclick="addPerson();">+</button>
 	                              </td>
 	                          </tr>
 	                          <tr>
 	                         	 <td>
 	                          	 	 <div style="display: flex; justify-content: center; margin-top: 20px;">
-				                        <button type="button" onclick="reserveConfirm();" style="width: 120px; height: 40px; font-size: 20px;">예약하기</button>
+				                        <button class="button" type="button" onclick="reserveConfirm();" style="width: 120px; height: 40px; font-size: 15px;">예약하기</button>
 				                     </div>
 			                      </td>                          	
 	                          </tr>
