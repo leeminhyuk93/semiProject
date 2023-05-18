@@ -27,7 +27,7 @@
          auth="Container"
          driverClassName="oracle.jdbc.driver.OracleDriver"
          url = "jdbc:oracle:thin:@localhost:1521:orcl"
-         username="ezenproject"
+         username="ezenhotel"
          password="1234"
          maxActive="20"
          maxIdle="10"

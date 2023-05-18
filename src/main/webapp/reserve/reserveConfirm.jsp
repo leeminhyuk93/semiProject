@@ -8,6 +8,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<title>예약 내용 확인</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         function reservationConfirmed() {
@@ -22,62 +23,99 @@
     </script>
     
     <link rel="stylesheet" type="text/css" href="${contextPath}/css/mainCss.css?version=1.7">
-    <link rel="stylesheet" type="text/css" href="${contextPath}/css/reserveConfirmCss.css">
+    <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f2f2f2;
+    }
+
+    .content {
+      text-align: center;
+      color: #FFA500;
+    }
+
+    h1 {
+      font-size: 60px;
+    }
+
+    table {
+      margin: 20px auto;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 10px 20px;
+      border: 1px solid #FFA500;
+    }
+
+    .button {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #FFA500;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+  </style>
 </head>
 <body>
 	  <%@ include file="../etc/header.jsp" %>
 	
-  	  <div class="reserveContainer">
-  	      <div class="centerd">
-              <font size="10"> 예약 내용 확인 </font>
-  	      </div>
-  	      <hr style="width: 900px;">
-  	      <div>
-  	      <form id="completeForm" action="${contextPath}/reserveComplete" method="post">
-  	          <table id="table">
-                  <tr>
-                      <td id="td1"><label>호텔이름</label></td>
-                      <td id="td2"><label><c:out value="${requestScope.reserveInfo.hotelName}"/></label></td>
-                  </tr>
-                  <tr>
-                      <td id="td1"><label>객실종류</label></td>
-                      <td id="td2"><label><c:out value="${requestScope.reserveInfo.roomName}"/></label></td>
-                  </tr>
-                  <tr>
-                      <td id="td1"><label>체크인</label></td>
-                      <td id="td2"><label><c:out value="${requestScope.reserveInfo.checkin}"/></label></td>
-                  </tr>
-                  <tr>
-                      <td id="td1"><label>체크아웃</label></td>
-                      <td id="td2"><label><c:out value="${requestScope.reserveInfo.checkout}"/></label></td>
-                  </tr>
-                  <tr>
-                      <td id="td1"><label>기간</label></td>
-                      <td id="td2"><label><c:out value="${requestScope.reserveInfo.diffDay}"/></label></td>
-                  </tr>
-                  <tr>
-                      <td id="td1"><label>수용인원</label></td>
-                      <td id="td2"><label><c:out value="${requestScope.reserveInfo.numOfuser}명"/></label></td>
-                  </tr>
-                  <tr>
-                  	  <td id="td1"><label> 결제금액 </label></td>
-                  	  <td id="td2"><label style="font-weight: bold;"><c:out value="${requestScope.reserveInfo.price}" />원</label></td>
-                  </tr>
-  	          </table>
-  	          <input name="hotelName" type="hidden" value="${requestScope.reserveInfo.hotelName}">
-              <input name="roomName" type="hidden" value="${requestScope.reserveInfo.roomName}">
-              <input name="checkin" type="hidden" value="${requestScope.reserveInfo.checkin}">
-              <input name="checkout" type="hidden" value="${requestScope.reserveInfo.checkout}">
-              <input name="diffDay" type="hidden" value="${requestScope.reserveInfo.diffDay}">
-              <input name="numOfuser" type="hidden" value="${requestScope.reserveInfo.numOfuser}">
-              <input name="user_id" type="hidden" value="${requestScope.reserveInfo.user_id}">
-  	     </form>
-  	          <div id="button">
-  	              <button type="button" onclick="reservationConfirmed();">예약확정</button>
-  	          </div>
-  	          <hr style="width: 900px; margin-top: 30px;">
-  	      </div>
-  	  </div>
+  	  <div class="container">
+	    <form id="completeForm" action="${contextPath}/reserveComplete" method="post">
+	        <div class="content">
+	          <h1>예약 내용 확인</h1>
+	          <table>
+	            <tr>
+	              <th>호텔 이름</th>
+	              <td><c:out value="${requestScope.reserveInfo.hotelName}"/></td>
+	            </tr>
+	            <tr>
+	              <th>객실 종류</th>
+	              <td><c:out value="${requestScope.reserveInfo.roomName}"/></td>
+	            </tr>
+	            <tr>
+	              <th>체크인</th>
+	              <td><c:out value="${requestScope.reserveInfo.checkin}"/></td>
+	            </tr>
+	            <tr>
+	              <th>체크아웃</th>
+	              <td><c:out value="${requestScope.reserveInfo.checkout}"/></td>
+	            </tr>
+	            <tr>
+	              <th>기간</th>
+	              <td><c:out value="${requestScope.reserveInfo.diffDay}"/></td>
+	            </tr>
+	            <tr>
+	              <th>수용 인원</th>
+	              <td><c:out value="${requestScope.reserveInfo.numOfuser}"/>명</td>
+	            </tr>
+	            <tr>
+	              <th>결제 금액</th>
+	              <td><c:out value="${requestScope.reserveInfo.price}" />원</td>
+	            </tr>
+	          </table>
+	          <input name="hotelName" type="hidden" value="${requestScope.reserveInfo.hotelName}">
+	          <input name="roomName" type="hidden" value="${requestScope.reserveInfo.roomName}">
+	          <input name="checkin" type="hidden" value="${requestScope.reserveInfo.checkin}">
+	          <input name="checkout" type="hidden" value="${requestScope.reserveInfo.checkout}">
+	          <input name="diffDay" type="hidden" value="${requestScope.reserveInfo.diffDay}">
+	          <input name="numOfuser" type="hidden" value="${requestScope.reserveInfo.numOfuser}">
+	          <input name="user_id" type="hidden" value="${requestScope.reserveInfo.user_id}">
+	          <a href="#" class="button" onclick="reservationConfirmed();">예약확정</a>
+	        </div>
+	    </form>
+	  </div>
   	  
   	  <%@ include file="../etc/footer.jsp" %>
 </body>
