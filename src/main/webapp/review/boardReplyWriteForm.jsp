@@ -12,6 +12,8 @@
 	<script type="text/javascript"
 		src="<c:url value="/ckeditor/ckeditor.js" />">
 	</script>
+	<link rel="stylesheet" type="text/css" href="${contextPath}/css/mainCss.css?version=1.7">
+	<link rel="shortcut icon" href="#">
 	
 	<style type="text/css">
 

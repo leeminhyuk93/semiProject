@@ -20,13 +20,12 @@
           align-items: center;
           justify-content: center;
           height: 40vh;
-          margin-bottom: -60px;
-          margin: 5%;
+          margin: 12%;
         }
 
         .content {
           display: flex;
-          width: 1500px;
+          width: 1000px;
           border: 3px solid orange;
           padding: 15px;
         }
@@ -42,15 +41,17 @@
 
         .title {
           color: #EDA900;
-          font-size: 60px;
-          margin-top: 0px;
+          font-size: 45px;
+          margin-top: 10px;
           text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+          margin-left: 5px;
         }
 
         .description {
-          font-size: 40px;
-          margin-top: -40px;
-          margin-bottom: 60px;
+          font-size: 20px;
+          margin-top: -30px;
+          margin-bottom: 16px;
+          margin-left: 5px;
         }
 
         .image-container {
@@ -61,8 +62,8 @@
         }
 
         .image-container img {
-          width: 270px;
-          height: 176px;
+          width: 170px;
+          height: 111px;
           margin-right: 25px;
         }
         .reservation-button {
@@ -74,7 +75,7 @@
           font-size: 16px;
           cursor: pointer;
           transition: transform 0.3s, box-shadow 0.3s;
-          margin-left: 120px;
+          margin-left: 50px;
           font-size: 30px;
         }
 
@@ -93,7 +94,7 @@
     <div class="container">
       <div class="content">
         <div class="left-column">
-          <img src="${contextPath}/images/reserve/room1.1.jpg" alt="Main Photo" width="600" height="450">
+          <img src="${contextPath}/images/reserve/room1.1.jpg" alt="Main Photo" width="400" height="270">
         </div>
         <div class="right-column">
           <h2 class="title">디럭스 킹</h2>
@@ -111,7 +112,7 @@
     <div class="container">
       <div class="content">
         <div class="left-column">
-          <img src="${contextPath}/images/reserve/room2.1.jpg" alt="Main Photo" width="600" height="450">
+          <img src="${contextPath}/images/reserve/room2.1.jpg" alt="Main Photo" width="400" height="270">
         </div>
         <div class="right-column">
           <h2 class="title">디럭스 트윈</h2>
@@ -129,7 +130,7 @@
     <div class="container">
       <div class="content">
         <div class="left-column">
-          <img src="${contextPath}/images/reserve/room3.1.jpg" alt="Main Photo" width="600" height="450">
+          <img src="${contextPath}/images/reserve/room3.1.jpg" alt="Main Photo" width="400" height="270">
         </div>
         <div class="right-column">
           <h2 class="title">로얄 스위트</h2>
