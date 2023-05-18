@@ -52,7 +52,7 @@
       border-collapse: collapse;
     }
 
-    th, td {
+    #completeForm th, td {
       padding: 10px 20px;
       border: 1px solid #FFA500;
     }
